@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const saleTimeGroupBy = (data) => {
+        let result = {}
+
+        data.forEach(item => {
+          const year = item["[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]"];
+          const month = item["[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]"];
+          const day = item["[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]"];
+          const revenue = item["[Measures].[Doanh Thu]"];
+          const quantity = item["[Measures].[So Luong]"];
+
+          let label = "";
+
+          if (day && month && year) {
+            // dd/mm/yyyy
+            const dd = String(day).padStart(2, '0');
+            const mm = String(month).padStart(2, '0');
+            label = `${dd}/${mm}/${year}`;
+          } else if (month && year) {
+            // mm/yyyy
+            const mm = String(month).padStart(2, '0');
+            label = `${mm}/${year}`;
+          } else if (year) {
+            // yyyy
+            label = `${year}`;
+          }
+
+          if (!result[label]) {
+            result[label] = {
+              day: day,
+              month: month,
+              year: year,
+              label: label,
+              revenue: 0,
+              quantity: 0
+            };
+          }
+
+          result[label].revenue += revenue;
+          result[label].quantity += quantity;
+        })
+
+        return Object.values(result).sort((a, b) => {
+          if (a.year !== b.year) return Number(a.year) - Number(b.year);
+          else if (a.month !== b.month) return Number(a.month) - Number(b.month);
+          else return Number(a.day) - Number(b.day);
+        });
+    }
+
+    const res = [
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "001",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "12",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "3",
+        "[Measures].[Doanh Thu]": 639796130,
+        "[Measures].[So Luong]": 1286
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "001",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "12",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "1",
+        "[Measures].[Doanh Thu]": 639796130,
+        "[Measures].[So Luong]": 1286
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "001",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "9",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "2",
+        "[Measures].[Doanh Thu]": 639796130,
+        "[Measures].[So Luong]": 1286
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "001",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "10",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "1",
+        "[Measures].[Doanh Thu]": 655514582,
+        "[Measures].[So Luong]": 1311
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "001",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "11",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "1",
+        "[Measures].[Doanh Thu]": 680678375,
+        "[Measures].[So Luong]": 1359
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "004",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "9",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "1",
+        "[Measures].[Doanh Thu]": 636591038,
+        "[Measures].[So Luong]": 1229
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "004",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "10",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "2",
+        "[Measures].[Doanh Thu]": 628389208,
+        "[Measures].[So Luong]": 1233
+    },
+    {
+        "[Dim Khach Hang].[Ma Thanh Pho].[Ma Thanh Pho].[MEMBER_CAPTION]": "004",
+        "[Dim Thoi Gian].[Nam].[Nam].[MEMBER_CAPTION]": "2023",
+        "[Dim Thoi Gian].[Thang].[Thang].[MEMBER_CAPTION]": "11",
+        "[Dim Thoi Gian].[Ngay].[Ngay].[MEMBER_CAPTION]": "21",
+        "[Measures].[Doanh Thu]": 615303920,
+        "[Measures].[So Luong]": 1250
+    }
+]
+
+    console.log(saleTimeGroupBy(res));
+  </script>
+  </body>
+</html>

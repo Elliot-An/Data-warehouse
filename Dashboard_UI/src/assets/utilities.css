@@ -1,0 +1,17 @@
+@layer utilities {
+  h1 {
+    @apply text-[32px] font-semibold text-gray-950 mb-5
+  }
+
+  .h2, h2 {
+    @apply text-[18px] font-medium text-gray-900 mb-5
+  }
+
+  button {
+    @apply cursor-pointer
+  }
+
+  button:disabled {
+    @apply cursor-default
+  }
+}
