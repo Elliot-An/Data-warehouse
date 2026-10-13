@@ -155,46 +155,10 @@ This was a two-person learning project. My responsibilities focused on dimension
 | Backend/API | Node.js |
 | Frontend | React |
 | Chart/UI components | shadcn/ui chart components |
-| OLAP server | Not currently identified |
-
-## Repository Structure
-
-The project is maintained in two separate repositories:
-
-- **Frontend repository:** React dashboard and UI.
-- **Backend / data warehouse repository:** Node.js API and data warehouse-related project assets.
-
-Add the actual repository URLs here:
-
-- Frontend: `TODO: add frontend repository URL`
-- Backend / data warehouse: `TODO: add backend repository URL`
 
 ## Getting Started
 
 The exact setup steps depend on the contents of the two repositories and the local SQL Server / SSIS configuration. The following details need to be filled in from the actual implementation before this section can be used as a runnable guide.
-
-### Prerequisites
-
-Confirm the required versions and setup for:
-
-- Microsoft SQL Server.
-- SQL Server Integration Services (SSIS) and any required development/runtime tools.
-- Node.js and npm.
-- The frontend package manager and required environment variables.
-- The OLAP server/product, if it must be installed or configured separately.
-
-### Setup Steps
-
-1. Clone the frontend and backend / data warehouse repositories using their actual Git URLs.
-2. Configure the source database and create or restore the sample source data.
-3. Configure the SQL Server data warehouse according to the project's schema scripts.
-4. Configure and execute the SSIS packages to load the data warehouse.
-5. Configure the OLAP layer using the project's actual server and cube definitions.
-6. Configure the Node.js API and its database / OLAP connection settings.
-7. Install frontend dependencies and configure the API endpoint used by the React application.
-8. Start the backend and frontend using the commands documented in their respective repositories.
-
-> **Before publishing:** Replace this outline with verified commands, required environment variables, database setup scripts, and any cube deployment instructions. No run commands or configuration keys are included here because they have not yet been provided.
 
 ## Current Scope and Notes
 
